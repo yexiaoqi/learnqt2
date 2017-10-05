@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 
 #if 0
 	//写文件
-	QFile file("in.txt");
+	QFile file("file.dat");
 	file.open(QIODevice::ReadOnly);
 	QDataStream in(&file);
 	QString str;
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 #endif
 
 #if 0
-	QFile file("in.txt");
+	QFile file("file.dat");
 	file.open(QIODevice::WriteOnly);
 	QDataStream out(&file);
 
@@ -102,9 +102,9 @@ int main(int argc, char *argv[])
 	}
 	in >> other_interesting_data;
 #endif
-
+#if 0
 	//QDataStream提供流的形式
-	QFile file("in.txt");
+	QFile file("file.dat");
 	file.open(QIODevice::ReadWrite);
 
 	QDataStream stream(&file);
@@ -114,4 +114,21 @@ int main(int argc, char *argv[])
 	stream << str;
 	stream.device()->seek(0);
 	stream >> strout;
+#endif
+
+#if 0
+	//文本文件的写
+	QFile data("file.txt");
+	if (data.open(QFile::WriteOnly | QIODevice::Truncate)) {
+		QTextStream out(&data);
+		out << "The answer is " << 42;
+	}
+#endif
+	QFile data("file.txt");
+	if (data.open(QFile::ReadOnly)) {
+		QTextStream in(&data);
+		QString str;
+		int ans = 0;
+		in >> str >> ans;
+	}
 }
