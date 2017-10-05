@@ -124,6 +124,7 @@ int main(int argc, char *argv[])
 		out << "The answer is " << 42;
 	}
 #endif
+#if 0
 	QFile data("file.txt");
 	if (data.open(QFile::ReadOnly)) {
 		QTextStream in(&data);
@@ -131,4 +132,82 @@ int main(int argc, char *argv[])
 		int ans = 0;
 		in >> str >> ans;
 	}
+#endif
+#if 0
+	//QListIterator,只读遍历器
+	QList<QString> list;
+	list << "A" << "B" << "C" << "D";
+
+	QListIterator<QString> i(list);
+	while (i.hasNext()) {
+		qDebug() << i.next();
+	}
+#endif
+
+#if 0
+	//使用QMutableListIterator遍历集合，如果其值是奇数则将其删除
+	QList<int> list;
+	list << 1 << 2 << 3 << 4;
+	QMutableListIterator<int> i(list);
+	while (i.hasNext()) {
+		if (i.next() % 2 != 0) {
+			i.remove();
+		}
+	}
+#endif
+
+#if 0
+	//修改已经存在的元素，使用setValue()函数
+	QList<int> list;
+	list << 1 << 2 << 3 << 411;
+	QMutableListIterator<int> i(list);
+	while (i.hasNext()) {
+		if (i.next() > 128) {
+			i.setValue(128);
+		}
+	}
+#endif
+
+#if 0
+	QList<int> list;
+	list << 1 << 2 << 3 << 411;
+	QMutableListIterator<int> i(list);
+	while (i.hasNext()) {
+		i.next() *= 2;
+	}
+#endif
+#if 0
+	QMap<int, QWidget *> map;
+	QHash<int, QWidget *> hash;
+
+	QMapIterator<int, QWidget *> i(map);
+	while (i.hasNext()) {
+		i.next();
+		hash.insert(i.key(), i.value());
+	}
+#endif
+
+#if 0
+	QList<QString> list;
+	list << "A" << "B" << "C" << "D";
+
+	QList<QString>::iterator i;
+	for (i = list.begin(); i != list.end(); ++i) {
+		*i = (*i).toLower();
+	}
+#endif
+#if 0
+	QList<QString> list;
+	list << "A" << "B" << "C" << "D";
+	QList<QString>::const_iterator i;
+	for (i = list.constBegin(); i != list.constEnd(); ++i) {
+		qDebug() << *i;
+	}
+#endif
+
+	QApplication app(argc, argv);
+	learnqt2 win;
+	win.resize(400, 200);
+	win.show();
+	return app.exec();
 }

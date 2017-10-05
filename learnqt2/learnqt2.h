@@ -1,15 +1,17 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
-#include "ui_learnqt2.h"
-
-class learnqt2 : public QMainWindow
+#include<QLabel>
+#include<QListWidget>
+#include<QHBoxLayout>
+class learnqt2 : public QWidget//必须是QWidget不是Qmainwindow
 {
 	Q_OBJECT
 
 public:
-	learnqt2(QWidget *parent = Q_NULLPTR);
+	learnqt2();
 
 private:
-	Ui::learnqt2Class ui;
+	QLabel *label;
+	QListWidget *listWidget;
 };
