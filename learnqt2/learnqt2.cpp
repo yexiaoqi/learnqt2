@@ -2,6 +2,7 @@
 
 learnqt2::learnqt2()
 {
+#if 0
 	//label = new QLabel;
 	label = new QLabel;//(this);//如果不在h文件中写QLabel *label；则要加QLabel *
 	label->setFixedWidth(70);
@@ -31,5 +32,15 @@ learnqt2::learnqt2()
 
 	connect(listWidget, SIGNAL(currentTextChanged(QString)),
 		label, SLOT(setText(QString)));
-	
+#endif
+	QString program = "C:/Windows/System32/cmd.exe";
+	QStringList arguments;
+	arguments << "/c" << "dir" << "C:\\";
+	QProcess *cmdProcess = new QProcess;
+	QObject::connect(cmdProcess, &QProcess::readyRead, [=]() {
+		QTextCodec *codec = QTextCodec::codecForName("GBK");
+		QString dir = codec->toUnicode(cmdProcess->readAll());
+		qDebug() << dir;
+	});
+	cmdProcess->start(program, arguments);
 }

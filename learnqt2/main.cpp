@@ -4,6 +4,8 @@
 #include<QFileInfo>
 #include<qDebug>
 #include<Qdir>
+#include<QTableWidget>
+
 
 int main(int argc, char *argv[])
 {
@@ -206,8 +208,69 @@ int main(int argc, char *argv[])
 #endif
 
 	QApplication app(argc, argv);
-	learnqt2 win;
+#if 0
+	QTreeWidget treeWidget;
+	treeWidget.setColumnCount(1);
+
+	QTreeWidgetItem *root = new QTreeWidgetItem(&treeWidget,
+		QStringList(QString("Root")));
+	new QTreeWidgetItem(root, QStringList(QString("Leaf 1")));
+	QTreeWidgetItem *leaf2 = new QTreeWidgetItem(root, QStringList(QString("Leaf 2")));
+	leaf2->setCheckState(0, Qt::Checked);
+
+	QList<QTreeWidgetItem *> rootList;
+	rootList << root;
+	treeWidget.insertTopLevelItems(0, rootList);
+
+	treeWidget.show();
+#endif
+
+#if 0
+	QTreeWidget treeWidget;
+
+	QStringList headers;
+	headers << "Name" << "Number";
+	treeWidget.setHeaderLabels(headers);
+
+	QStringList rootTextList;
+	rootTextList << "Root" << "0";
+	QTreeWidgetItem *root = new QTreeWidgetItem(&treeWidget, rootTextList);
+
+	new QTreeWidgetItem(root, QStringList() << QString("Leaf 1") << "1");
+	QTreeWidgetItem *leaf2 = new QTreeWidgetItem(root,
+		QStringList() << QString("Leaf 2") << "2");
+	leaf2->setCheckState(0, Qt::Checked);
+
+	QList<QTreeWidgetItem *> rootList;
+	rootList << root;
+	treeWidget.insertTopLevelItems(0, rootList);
+
+	treeWidget.show();
+#endif
+#if 0
+	QTableWidget tableWidget;
+	tableWidget.setColumnCount(3);
+	tableWidget.setRowCount(5);
+
+	QStringList headers;
+	headers << "ID" << "Name" << "Age" << "Sex";
+	tableWidget.setHorizontalHeaderLabels(headers);
+
+	tableWidget.setItem(0, 0, new QTableWidgetItem(QString("0001")));
+	tableWidget.setItem(1, 0, new QTableWidgetItem(QString("0002")));
+	tableWidget.setItem(2, 0, new QTableWidgetItem(QString("0003")));
+	tableWidget.setItem(3, 0, new QTableWidgetItem(QString("0004")));
+	tableWidget.setItem(4, 0, new QTableWidgetItem(QString("0005")));
+	tableWidget.setItem(0, 1, new QTableWidgetItem(QString("20100112")));
+
+	tableWidget.show();
+
+	/*learnqt2 win;
 	win.resize(400, 200);
+	win.show();*/
+	return app.exec();
+#endif
+	learnqt2 win;
 	win.show();
 	return app.exec();
 }

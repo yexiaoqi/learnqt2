@@ -4,6 +4,10 @@
 #include<QLabel>
 #include<QListWidget>
 #include<QHBoxLayout>
+#include<QTreeWidget>
+#include<QProcess>
+#include<QTextCodec>
+#include<qDebug>
 class learnqt2 : public QWidget//必须是QWidget不是Qmainwindow
 {
 	Q_OBJECT
